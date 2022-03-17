@@ -8183,6 +8183,7 @@ dependencies = [
  "pallet-currency-factory",
  "pallet-vault",
  "parity-scale-codec",
+ "proptest",
  "scale-info",
  "serde",
  "sp-arithmetic 5.0.0 (git+https://github.com/dzmitry-lahoda-forks/substrate?rev=8df0a39f51b672c773b306923f65f8dde74b850e)",
