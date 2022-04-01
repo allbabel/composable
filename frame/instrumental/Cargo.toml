@@ -34,6 +34,7 @@ pallet-assets = { default-features = false, path = "../assets"}
 orml-tokens = { git = "https://github.com/open-web3-stack/open-runtime-module-library", rev = "b57f88b39cd547e2fb51727d8bb9bcc64fddf8b5" }
 orml-traits = { git = "https://github.com/open-web3-stack/open-runtime-module-library", rev = "b57f88b39cd547e2fb51727d8bb9bcc64fddf8b5" }
 primitives = { path = "../../runtime/primitives", default-features = false }
+sp-state-machine = "0.12.0"
 proptest = "1.0"
 hex-literal = "0.3.3"
 itertools = "0.10.3"
