@@ -189,6 +189,7 @@ export default {
     ComposableTraitsStakingRewardPool: "Null",
     ComposableTraitsStakingRewardPoolConfiguration: "Null",
     IbcTransferPalletParams: "Null",
-    IbcTransferTransferParams: "Null"
+    IbcTransferTransferParams: "Null",
+    ComposableTraitsStakingStake: "Null"
   }
 };
