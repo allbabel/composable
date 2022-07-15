@@ -5,6 +5,8 @@ import { Bool, Null, Result, u128 } from "@polkadot/types-codec";
 import { Balance } from "@polkadot/types/interfaces/runtime";
 import { SpRuntimeDispatchError } from "@polkadot/types/lookup";
 import { IEvent } from "@polkadot/types/types";
+import BN from "bn.js";
+import { expect } from "chai";
 
 /**
  * Creates a constant product (Uniswap) dex pool.
@@ -19,16 +21,18 @@ import { IEvent } from "@polkadot/types/types";
 export default async function(
   api: ApiPromise,
   sudoKey: KeyringPair,
-  poolId: number | u128,
+  poolId: number | u128 | BN,
   baseAmount: number | u128 | Balance | bigint,
   quoteAmount: number | u128 | Balance | bigint,
   minMintAmount: number | u128 | Balance,
   keepAlive: Bool | boolean
 ): Promise<IEvent<[Result<Null, SpRuntimeDispatchError>]>> {
-  return await sendAndWaitForSuccess(
+  const result = await sendAndWaitForSuccess(
     api,
     sudoKey,
     api.events.sudo.Sudid.is,
     api.tx.sudo.sudo(api.tx.pablo.addLiquidity(poolId, baseAmount, quoteAmount, minMintAmount, keepAlive))
   );
+  expect(result.data[0].isOk).to.be.true;
+  return result;
 }

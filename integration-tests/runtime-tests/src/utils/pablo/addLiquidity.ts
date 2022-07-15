@@ -5,6 +5,7 @@ import { Bool, u128 } from "@polkadot/types-codec";
 import { Balance } from "@polkadot/types/interfaces/runtime";
 import { IEvent } from "@polkadot/types/types";
 import { AccountId32 } from "@polkadot/types/interfaces";
+import BN from "bn.js";
 
 /**
  * Creates a constant product (Uniswap) dex pool.
@@ -19,7 +20,7 @@ import { AccountId32 } from "@polkadot/types/interfaces";
 export default async function(
   api: ApiPromise,
   senderWallet: KeyringPair,
-  poolId: number | u128,
+  poolId: number | u128 | BN,
   baseAmount: number | u128 | Balance | bigint,
   quoteAmount: number | u128 | Balance | bigint,
   minMintAmount: number | u128 | Balance,
