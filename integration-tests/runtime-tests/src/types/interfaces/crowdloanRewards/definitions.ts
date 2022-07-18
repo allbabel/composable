@@ -190,6 +190,7 @@ export default {
     ComposableTraitsStakingRewardPoolConfiguration: "Null",
     IbcTransferPalletParams: "Null",
     IbcTransferTransferParams: "Null",
-    ComposableTraitsStakingStake: "Null"
+    ComposableTraitsStakingStake: "Null",
+    ComposableTraitsOracleRewardTracker: "Null"
   }
 };
