@@ -35,7 +35,8 @@ pallet-governance-registry = { path = "../governance-registry", default-features
 pallet-pablo = { path = "../pablo", default-features = false }
 pallet-staking-rewards = { path = "../staking-rewards", default-features = false }
 pallet-timestamp = { git = "https://github.com/paritytech/substrate", branch = "polkadot-v0.9.24", default-features = false }
-pallet-vault = { default-features = false, path = "../vault"}
+pallet-vault = { path = "../vault", default-features = false }
+pallet-collective = { git = "https://github.com/paritytech/substrate", branch = "polkadot-v0.9.24", default-features = false }
 primitives = { path = "../../runtime/primitives", default-features = false }
 orml-tokens = { git = "https://github.com/open-web3-stack/open-runtime-module-library", rev = "b57f88b39cd547e2fb51727d8bb9bcc64fddf8b5" }
 orml-traits = { git = "https://github.com/open-web3-stack/open-runtime-module-library", rev = "b57f88b39cd547e2fb51727d8bb9bcc64fddf8b5" }
@@ -43,23 +44,27 @@ orml-traits = { git = "https://github.com/open-web3-stack/open-runtime-module-li
 [features]
 default = ["std"]
 std = [
+    "codec/std",
+    "frame-benchmarking/std",
     "frame-support/std",
     "frame-system/std",
-    "frame-benchmarking/std",
-    "sp-runtime/std",
-    "sp-arithmetic/std",
-    "sp-io/std",
-    "sp-core/std",
-    "sp-std/std",
-    "primitives/std",
-    "codec/std",
-    "scale-info/std",
     "log/std",
+    "orml-tokens/std",
+    "orml-traits/std",
+    "pallet-collective/std",
+    "primitives/std",
+    "scale-info/std",
     "serde/std",
+    "sp-arithmetic/std",
+    "sp-core/std",
+    "sp-io/std",
+    "sp-runtime/std",
+    "sp-std/std",
 ]
 
 runtime-benchmarks = [
   "frame-benchmarking",
   "frame-support/runtime-benchmarks",
   "frame-system/runtime-benchmarks",
+  "pallet-collective/runtime-benchmarks"
 ]

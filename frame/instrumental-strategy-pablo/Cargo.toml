@@ -33,13 +33,14 @@ orml-tokens = { git = "https://github.com/open-web3-stack/open-runtime-module-li
 orml-traits = { git = "https://github.com/open-web3-stack/open-runtime-module-library", rev = "b57f88b39cd547e2fb51727d8bb9bcc64fddf8b5" }
 pallet-assets = { path = "../assets", default-features = false }
 pallet-balances = { git = "https://github.com/paritytech/substrate", branch = "polkadot-v0.9.24" }
+pallet-collective = { git = "https://github.com/paritytech/substrate", branch = "polkadot-v0.9.24", default-features = false }
 pallet-currency-factory = { path = "../currency-factory" }
 pallet-governance-registry = { path = "../governance-registry", default-features = false }
 pallet-instrumental = { path = "../instrumental", default-features = false }
 pallet-pablo = { path = "../pablo", default-features = false }
 pallet-staking-rewards = { path = "../staking-rewards", default-features = false }
 pallet-timestamp = { git = "https://github.com/paritytech/substrate", branch = "polkadot-v0.9.24", default-features = false }
-pallet-vault = { default-features = false, path = "../vault"}
+pallet-vault = { path = "../vault", default-features = false }
 primitives = { path = "../../runtime/primitives", default-features = false }
 proptest = "1.0.0"
 
@@ -53,6 +54,7 @@ std = [
     "log/std",
     "orml-tokens/std",
     "orml-traits/std",
+    "pallet-collective/std",
     "pallet-balances/std",
     "pallet-pablo/std",
     "pallet-vault/std",
@@ -70,4 +72,5 @@ runtime-benchmarks = [
   "frame-benchmarking",
   "frame-support/runtime-benchmarks",
   "frame-system/runtime-benchmarks",
+  "pallet-collective/runtime-benchmarks"
 ]
