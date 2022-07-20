@@ -1190,10 +1190,6 @@ declare module '@polkadot/api-base/types/errors' {
        **/
       MaxRewardLimitReached: AugmentedError<ApiType>;
       /**
-       * No position found for given id.
-       **/
-      NoPositionFound: AugmentedError<ApiType>;
-      /**
        * Not enough assets for a stake.
        **/
       NotEnoughAssets: AugmentedError<ApiType>;
@@ -1213,6 +1209,10 @@ declare module '@polkadot/api-base/types/errors' {
        * Rewards pool not found.
        **/
       RewardsPoolNotFound: AugmentedError<ApiType>;
+      /**
+       * No stake found for given id.
+       **/
+      StakeNotFound: AugmentedError<ApiType>;
       /**
        * Unimplemented reward pool type.
        **/
