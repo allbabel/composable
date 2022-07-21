@@ -17,13 +17,13 @@ import BN from "bn.js";
  * @param minMintAmount
  * @param keepAlive
  */
-export default async function(
+export default async function (
   api: ApiPromise,
   senderWallet: KeyringPair,
   poolId: number | u128 | BN,
-  baseAmount: number | u128 | Balance | bigint,
-  quoteAmount: number | u128 | Balance | bigint,
-  minMintAmount: number | u128 | Balance,
+  baseAmount: number | u128 | Balance | bigint | BN,
+  quoteAmount: number | u128 | Balance | bigint | BN,
+  minMintAmount: number | u128 | Balance | bigint | BN,
   keepAlive: Bool | boolean
 ): Promise<IEvent<[AccountId32, u128, u128, u128, u128]>> {
   return await sendAndWaitForSuccess(
