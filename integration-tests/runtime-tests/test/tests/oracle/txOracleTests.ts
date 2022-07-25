@@ -20,7 +20,7 @@ import { mintAssetsToWallet } from "@composable/utils/mintingHelper";
  * Contains all TX tests for the pallet:
  * Oracle
  */
-describe.only("tx.oracle Tests", function () {
+describe("tx.oracle Tests", function () {
   if (!testConfiguration.enabledTests.enabled) return;
 
   let api: ApiPromise;
@@ -126,6 +126,11 @@ describe.only("tx.oracle Tests", function () {
       expect(resultAccount1.toString()).to.be.equal(
         api.createType("AccountId32", controllerWallet.publicKey).toString()
       );
+      const signerToControllerResultWrapped = await api.query.oracle.signerToController(signerWallet1.publicKey);
+      const signerToControllerResult = signerToControllerResultWrapped.unwrap();
+      expect(signerToControllerResult.toString()).to.be.equal(
+        api.createType("AccountId32", controllerWallet.publicKey)
+      );
     });
     it("Can set signer #2", async function () {
       if (!testConfiguration.enabledTests.setSigner__success.set1) this.skip();
@@ -145,6 +150,9 @@ describe.only("tx.oracle Tests", function () {
       expect(resultAccount1).to.not.be.an("Error");
       expect(resultAccount0.toString()).to.be.equal(api.createType("AccountId32", signerWallet2.publicKey).toString());
       expect(resultAccount1.toString()).to.be.equal(api.createType("AccountId32", signerWallet1.publicKey).toString());
+      const signerToControllerResultWrapped = await api.query.oracle.signerToController(signerWallet2.publicKey);
+      const signerToControllerResult = signerToControllerResultWrapped.unwrap();
+      expect(signerToControllerResult.toString()).to.be.equal(api.createType("AccountId32", signerWallet1.publicKey));
     });
     it("Can set signer #3", async function () {
       if (!testConfiguration.enabledTests.setSigner__success.set1) this.skip();
@@ -164,6 +172,9 @@ describe.only("tx.oracle Tests", function () {
       expect(resultAccount1).to.not.be.an("Error");
       expect(resultAccount0.toString()).to.be.equal(api.createType("AccountId32", signerWallet3.publicKey).toString());
       expect(resultAccount1.toString()).to.be.equal(api.createType("AccountId32", signerWallet2.publicKey).toString());
+      const signerToControllerResultWrapped = await api.query.oracle.signerToController(signerWallet3.publicKey);
+      const signerToControllerResult = signerToControllerResultWrapped.unwrap();
+      expect(signerToControllerResult.toString()).to.be.equal(api.createType("AccountId32", signerWallet2.publicKey));
     });
     it("Can set signer #4", async function () {
       if (!testConfiguration.enabledTests.setSigner__success.set1) this.skip();
@@ -183,26 +194,9 @@ describe.only("tx.oracle Tests", function () {
       expect(resultAccount1).to.not.be.an("Error");
       expect(resultAccount0.toString()).to.be.equal(api.createType("AccountId32", signerWallet4.publicKey).toString());
       expect(resultAccount1.toString()).to.be.equal(api.createType("AccountId32", signerWallet3.publicKey).toString());
-    });
-
-    it("Finalizing signers", async function () {
-      if (!testConfiguration.enabledTests.setSigner__success.set1) this.skip();
-
-      const {
-        data: [resultAccount0, resultAccount1]
-      } = await txOracleSetSignerSuccessTest(api, signerWallet3, signerWallet4).catch(function (exc) {
-        return { data: [exc] }; /* We can't call this.skip() from here. */
-      });
-
-      if (
-        resultAccount0.message == "oracle.SignerUsed: This signer is already in use" ||
-        resultAccount0.message == "oracle.ControllerUsed: This controller is already in use"
-      )
-        return this.skip(); // If the test is run a second time on the same chain, we already have a signer set.
-      expect(resultAccount0).to.not.be.an("Error");
-      expect(resultAccount1).to.not.be.an("Error");
-      expect(resultAccount0.toString()).to.be.equal(api.createType("AccountId32", signerWallet4.publicKey).toString());
-      expect(resultAccount1.toString()).to.be.equal(api.createType("AccountId32", signerWallet3.publicKey).toString());
+      const signerToControllerResultWrapped = await api.query.oracle.signerToController(signerWallet4.publicKey);
+      const signerToControllerResult = signerToControllerResultWrapped.unwrap();
+      expect(signerToControllerResult.toString()).to.be.equal(api.createType("AccountId32", signerWallet3.publicKey));
     });
   });
 
