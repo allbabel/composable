@@ -15,12 +15,13 @@ import { ApiPromise } from "@polkadot/api";
 import { getNewConnection } from "@composable/utils/connectionHelper";
 import { getDevWallets } from "@composable/utils/walletHelper";
 import { mintAssetsToWallet } from "@composable/utils/mintingHelper";
+import BN from "bn.js";
 
 /**
  * Contains all TX tests for the pallet:
  * Oracle
  */
-describe("tx.oracle Tests", function () {
+describe.only("[SHORT]tx.oracle Tests", function () {
   if (!testConfiguration.enabledTests.enabled) return;
 
   let api: ApiPromise;
@@ -284,7 +285,7 @@ describe("tx.oracle Tests", function () {
     if (!testConfiguration.enabledTests.removeStake__success.enabled) return;
     // Timeout set to 2 minutes
     this.timeout(2 * 60 * 1000);
-    it("Can remove stake", async function () {
+    it("Can remove stakes", async function () {
       if (!testConfiguration.enabledTests.removeStake__success.remove1) this.skip();
       const {
         data: [result]
@@ -308,7 +309,6 @@ describe("tx.oracle Tests", function () {
     this.timeout(20 * 60 * 1000);
     this.slow(15 * 60 * 1000);
     it("Can reclaim stake", async function () {
-      this.skip(); // ToDo: Remove!
       if (!testConfiguration.enabledTests.reclaimStake__success.reclaim1) this.skip();
       // Get the block number at which the funds are unlocked.
       const declaredWithdrawsResult = await api.query.oracle.declaredWithdraws(signerWallet1.address);
@@ -318,11 +318,14 @@ describe("tx.oracle Tests", function () {
       expect(currentBlock.toNumber()).to.be.a("Number");
       // Taking a nap until we reach the unlocking block.
       await waitForBlocks(api, unlockBlock.toNumber() - currentBlock.toNumber());
+      const walletFundsBefore = await api.rpc.assets.balanceOf("1", controllerWallet.publicKey);
       const {
         data: [result]
       } = await txOracleReclaimStakeSuccessTest(api, controllerWallet);
       expect(result).to.not.be.an("Error");
       expect(result.toString()).to.be.equal(api.createType("AccountId32", signerWallet1.publicKey).toString());
+      const walletFundsAfter = await api.rpc.assets.balanceOf("1", controllerWallet.publicKey);
+      expect(new BN(walletFundsAfter.toString())).to.be.bignumber.greaterThan(new BN(walletFundsBefore.toString()));
     });
   });
 });
