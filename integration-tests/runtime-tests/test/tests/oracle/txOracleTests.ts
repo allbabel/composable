@@ -21,7 +21,7 @@ import BN from "bn.js";
  * Contains all TX tests for the pallet:
  * Oracle
  */
-describe.only("[SHORT]tx.oracle Tests", function () {
+describe.only("Oracle Tests", function () {
   if (!testConfiguration.enabledTests.enabled) return;
 
   let api: ApiPromise;
