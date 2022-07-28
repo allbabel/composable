@@ -121,8 +121,6 @@ describe("Oracle Tests", function () {
         resultAccount0.message == "oracle.ControllerUsed: This controller is already in use"
       )
         return this.skip(); // If the test is run a second time on the same chain, we already have a signer set.
-      expect(resultAccount0).to.not.be.an("Error");
-      expect(resultAccount1).to.not.be.an("Error");
       expect(resultAccount0.toString()).to.be.equal(api.createType("AccountId32", signerWallet1.publicKey).toString());
       expect(resultAccount1.toString()).to.be.equal(
         api.createType("AccountId32", controllerWallet.publicKey).toString()
@@ -147,8 +145,6 @@ describe("Oracle Tests", function () {
         resultAccount0.message == "oracle.ControllerUsed: This controller is already in use"
       )
         return this.skip(); // If the test is run a second time on the same chain, we already have a signer set.
-      expect(resultAccount0).to.not.be.an("Error");
-      expect(resultAccount1).to.not.be.an("Error");
       expect(resultAccount0.toString()).to.be.equal(api.createType("AccountId32", signerWallet2.publicKey).toString());
       expect(resultAccount1.toString()).to.be.equal(api.createType("AccountId32", signerWallet1.publicKey).toString());
       const signerToControllerResultWrapped = await api.query.oracle.signerToController(signerWallet2.publicKey);
@@ -169,8 +165,6 @@ describe("Oracle Tests", function () {
         resultAccount0.message == "oracle.ControllerUsed: This controller is already in use"
       )
         return this.skip(); // If the test is run a second time on the same chain, we already have a signer set.
-      expect(resultAccount0).to.not.be.an("Error");
-      expect(resultAccount1).to.not.be.an("Error");
       expect(resultAccount0.toString()).to.be.equal(api.createType("AccountId32", signerWallet3.publicKey).toString());
       expect(resultAccount1.toString()).to.be.equal(api.createType("AccountId32", signerWallet2.publicKey).toString());
       const signerToControllerResultWrapped = await api.query.oracle.signerToController(signerWallet3.publicKey);
@@ -191,8 +185,6 @@ describe("Oracle Tests", function () {
         resultAccount0.message == "oracle.ControllerUsed: This controller is already in use"
       )
         return this.skip(); // If the test is run a second time on the same chain, we already have a signer set.
-      expect(resultAccount0).to.not.be.an("Error");
-      expect(resultAccount1).to.not.be.an("Error");
       expect(resultAccount0.toString()).to.be.equal(api.createType("AccountId32", signerWallet4.publicKey).toString());
       expect(resultAccount1.toString()).to.be.equal(api.createType("AccountId32", signerWallet3.publicKey).toString());
       const signerToControllerResultWrapped = await api.query.oracle.signerToController(signerWallet4.publicKey);
@@ -221,15 +213,10 @@ describe("Oracle Tests", function () {
         txOracleAddStakeSuccessTest(api, signerWallet3, stake),
         txOracleAddStakeSuccessTest(api, signerWallet4, stake)
       ]).then(([result1, result2, result3, result4, result5]) => {
-        expect(result1[0].data[0]).to.not.be.an("Error");
         expect(result1[0].data[0]).to.be.equal(api.createType("AccountId32", signerWallet1.publicKey).toString());
-        expect(result2[0].data[0]).to.not.be.an("Error");
         expect(result2[0].data[0]).to.be.equal(api.createType("AccountId32", signerWallet1.publicKey).toString());
-        expect(result3[0].data[0]).to.not.be.an("Error");
         expect(result3[0].data[0]).to.be.equal(api.createType("AccountId32", signerWallet1.publicKey).toString());
-        expect(result4[0].data[0]).to.not.be.an("Error");
         expect(result4[0].data[0]).to.be.equal(api.createType("AccountId32", signerWallet1.publicKey).toString());
-        expect(result5[0].data[0]).to.not.be.an("Error");
         expect(result5[0].data[0]).to.be.equal(api.createType("AccountId32", signerWallet1.publicKey).toString());
         return [result1, result2, result3, result4, result4];
       });
@@ -257,15 +244,10 @@ describe("Oracle Tests", function () {
         txOracleSubmitPriceSuccessTest(api, signerWallet3, price, assetId),
         txOracleSubmitPriceSuccessTest(api, signerWallet4, price, assetId)
       ]).then(([result1, result2, result3, result4, result5]) => {
-        expect(result1[0].data[0]).to.not.be.an("Error");
         expect(result1[0].data[0]).to.be.equal(api.createType("AccountId32", controllerWallet.publicKey).toString());
-        expect(result2[0].data[0]).to.not.be.an("Error");
         expect(result2[0].data[0]).to.be.equal(api.createType("AccountId32", signerWallet1.publicKey).toString());
-        expect(result3[0].data[0]).to.not.be.an("Error");
         expect(result3[0].data[0]).to.be.equal(api.createType("AccountId32", signerWallet2.publicKey).toString());
-        expect(result4[0].data[0]).to.not.be.an("Error");
         expect(result4[0].data[0]).to.be.equal(api.createType("AccountId32", signerWallet3.publicKey).toString());
-        expect(result5[0].data[0]).to.not.be.an("Error");
         expect(result5[0].data[0]).to.be.equal(api.createType("AccountId32", signerWallet4.publicKey).toString());
         return [result1, result2, result3, result4, result4];
       });
@@ -290,7 +272,6 @@ describe("Oracle Tests", function () {
       const {
         data: [result]
       } = await txOracleRemoveStakeSuccessTest(api, controllerWallet);
-      expect(result).to.not.be.an("Error");
       expect(result.toString()).to.be.equal(api.createType("AccountId32", signerWallet1.publicKey).toString());
     });
   });
@@ -322,7 +303,6 @@ describe("Oracle Tests", function () {
       const {
         data: [result]
       } = await txOracleReclaimStakeSuccessTest(api, controllerWallet);
-      expect(result).to.not.be.an("Error");
       expect(result.toString()).to.be.equal(api.createType("AccountId32", signerWallet1.publicKey).toString());
       const walletFundsAfter = await api.rpc.assets.balanceOf("1", controllerWallet.publicKey);
       expect(new BN(walletFundsAfter.toString())).to.be.bignumber.greaterThan(new BN(walletFundsBefore.toString()));
