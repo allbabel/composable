@@ -353,6 +353,7 @@ declare module '@polkadot/api-base/types/consts' {
        * Minimum duration for a sale.
        **/
       lbpMinSaleDuration: u32 & AugmentedConst<ApiType>;
+      msPerBlock: u32 & AugmentedConst<ApiType>;
       palletId: FrameSupportPalletId & AugmentedConst<ApiType>;
       /**
        * The interval between TWAP computations.

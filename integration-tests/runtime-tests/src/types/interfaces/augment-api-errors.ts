@@ -957,6 +957,7 @@ declare module '@polkadot/api-base/types/errors' {
       NotEnoughLpToken: AugmentedError<ApiType>;
       PairMismatch: AugmentedError<ApiType>;
       PoolNotFound: AugmentedError<ApiType>;
+      StakingPoolConfigError: AugmentedError<ApiType>;
       WeightsMustBeNonZero: AugmentedError<ApiType>;
       WeightsMustSumToOne: AugmentedError<ApiType>;
       /**
@@ -1197,6 +1198,10 @@ declare module '@polkadot/api-base/types/errors' {
        * Only pool owner can add new reward asset.
        **/
       OnlyPoolOwnerCanAddNewReward: AugmentedError<ApiType>;
+      /**
+       * only the owner of stake can unstake it
+       **/
+      OnlyStakeOwnerCanUnstake: AugmentedError<ApiType>;
       /**
        * Error when creating reduction configs.
        **/

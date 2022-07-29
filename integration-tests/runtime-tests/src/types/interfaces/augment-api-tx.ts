@@ -2378,6 +2378,12 @@ declare module '@polkadot/api-base/types/submittable' {
        **/
       stake: AugmentedSubmittable<(poolId: u16 | AnyNumber | Uint8Array, amount: u128 | AnyNumber | Uint8Array, durationPreset: u64 | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [u16, u128, u64]>;
       /**
+       * Remove a stake.
+       * 
+       * Emits `Unstaked` event when successful.
+       **/
+      unstake: AugmentedSubmittable<(positionId: u128 | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [u128]>;
+      /**
        * Generic tx
        **/
       [key: string]: SubmittableExtrinsicFunction<ApiType>;

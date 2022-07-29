@@ -893,11 +893,16 @@ declare module '@polkadot/api-base/types/events' {
        **/
       RewardPoolCreated: AugmentedEvent<ApiType, [u16, AccountId32, u32]>;
       /**
+       * Reward transfer event.
+       **/
+      RewardTransferred: AugmentedEvent<ApiType, [AccountId32, u16, u128, u128]>;
+      /**
        * Split stake position into two positions
        **/
       SplitPosition: AugmentedEvent<ApiType, [Vec<u128>]>;
       StakeAmountExtended: AugmentedEvent<ApiType, [u128, u128]>;
       Staked: AugmentedEvent<ApiType, [u16, AccountId32, u128, u64, u128, bool]>;
+      Unstaked: AugmentedEvent<ApiType, [AccountId32, u128]>;
       /**
        * Generic event
        **/
