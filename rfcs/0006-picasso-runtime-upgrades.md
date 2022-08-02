@@ -7,7 +7,7 @@ Expected that the reader has understood official Parity documents and explainers
 ## Constraints
 
 - Upgrades can be done only under `Root` origin.
-- Upgrades are not immediate because runtime should be copied to the majority of para chain collators and relay validators and be enabled simultaneously on a specific block in the future.
+- Upgrades are not immediate because runtime should be copied to the majority of parachain collators and relay validators and be enabled simultaneously on a specific block in the future.
 
 ## Flow
 
