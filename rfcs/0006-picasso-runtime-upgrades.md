@@ -8,12 +8,17 @@ Extended with security measures, like Karura and Kusama have, to protect liqiudi
 
 Expected that the reader has understood official Parity documents and explainers regarding upgrades and [governance].
 
+Document is not intentended to described detailed specificaitons of quality gates.
+
 ## Constraints
 
-- Upgrades can be done only under `Root` origin.
-- Upgrades are not immediate because runtime should be copied to the majority of parachain collators and relay validators and be enabled simultaneously on a specific block in the future.
+- Upgrades can be done only under `Root` origin, but cannot be `single signature`
+- Upgrades are not immediate because runtime should be copied to parachain collators and relay validators and be enabled simultaneously on a specific block in the future.
 
 ## Flow
+
+### Overview
+
 
 ### I want some code to be running in Picasso parachain
 
@@ -24,6 +29,9 @@ I make sure that:
 - Code is part of `picasso` runtime configuration.
 - Relevant(see other documents regarding acceptance criteria) preliminary checks, tests, and audits passed for added code.
 - I send git commit hash to #sre to ask to deploy `wasm` including that hash.
+
+
+Must run on Dali Rococo Testnet
 
 ### As SRE, we help to deploy changes to the runtime
 
@@ -43,6 +51,7 @@ I make sure that:
 
 ### Council collective
 
+- Coincil motion
 - Creates default YES voting on democracy
 - Votes yes with their funds
 
