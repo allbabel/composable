@@ -100,14 +100,25 @@ On top of `core quality gates` next things can be considered:
 
 @ComposableFi/technical-writers ensure that available documentation is not in conflcit with Picasso  upgrade.
 
-@ComposableFi/blockchain-integrations consider that user interface, historical data explorer and bot integrations will not negatively imact relevant integration and user experience.
+@ComposableFi/blockchain-integrations, @ComposableFi/bots consider that user interface, historical data explorer and bot integrations will not negatively imact relevant integration and user experience.
+
+@ComposableFi/securty consider that runtime configuration(default values and included pallets) of Picasso is secure enough for relase. 
+
+Amount and structure of alignemnt is not specified here, but some should be.
 
 
-- Relevant(see other documents regarding acceptance criteria) preliminary checks, tests, and audits passed for added code.
-- I send git commit hash to #sre to ask to deploy `wasm` including that hash.
+### On chain upgrade operations
 
 
-Must run on Dali Rococo Testnet
+### Preparing preimage
+
+After enough aligment happend, `Release engineers` upload runtime `wasm` on chain as ***preimag***.
+
+Collected notes, preimage hash and alignment output is send to channel with council representatives. 
+
+
+### Council 
+
 
 ### As SRE, we help to deploy changes to the runtime
 
@@ -115,10 +126,6 @@ Must run on Dali Rococo Testnet
 - We ensure that runtime `wasm` with referenced code is available in `GitHub Releases`
 - We collect all hashes to include in the next runtime upgrade.
 - We ask for consensus from  (QA) and  (docs are up to date with runtime) and @ComposableFi/security and (UI/Frontend/Explorer) are for upgrade including relevant hashes
-
-### With SUDO (key, multi-signature, proxy)
-
-@ComposableFi/sre follow Parity docs on runtime upgrade.
 
 ### Without SUDO
 
