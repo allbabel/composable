@@ -6,9 +6,13 @@ In its core [upgrades] are as described by Parity for developer network.
 
 Extended with security measures, like Karura and Kusama have, to protect liqiudity on these networks.
 
-Expected that the reader has understood official Parity documents and explainers regarding upgrades and [governance].
+Expected that the reader has understood official Parity documents and [explainers], [upgrades], [governance].
+
+It is helpfull if reader undrestans *nix [substitute user] operation. 
 
 Document is not intentended to described detailed specificaitons of quality gates.
+
+Document specifies relevant domains and stakeholders and teams, but not names exactly what communication channel these would use as communicaiton medium.
 
 ## Constraints
 
@@ -19,25 +23,45 @@ Document is not intentended to described detailed specificaitons of quality gate
 - There should be aligment of stakeholders on quality of release to be sure that bridged Picasso assets are secure. 
 
 
+## Legend
+
+***represent on chain things*** which can be interacted via Polkadot.js or Composable parachain SDK.
+
 ## Flow
 
 ### Overview of flow
 
-Relase notes collected, specifically git commits which must be inlcuded into release are traceable to projects items or pull requests.
+Relase notes collected, specifically `git commit`s which must be inlcuded into release are traceable to projects or pull request `item`s.
 
 Relevant notes and references to runtime build artifact (`wasm`) is shared into company channel with relevant representativses.
 
 Represantatives agree with this release.
 
-Release is stored as `preimage` on Picasso. Preimage hash is shared in channel with council collective representatives.
+Release is stored as ***preimage*** on Picasso. Preimage `hash` is shared in channel with ***counci*** representatives.
 
-Council creates default YES motion to vote on enactment of premiage on democracy. Shareholdes and technical collective fast track enactment of new runtime.
+Council creates default YES ***motion*** to vote on enactment of premiage on democracy. Shareholdes and ***technicalCollective*** fast track enactment of new runtime.
+
+Each step executed Here is mapping of teams to roles they play in process
 
 
+| role | groups of people| area |  
+|-----------------|-----| 
+| release engineers | @ComposableFi/sre| | 
+| integration stakeholders| @ComposableFi/blockchain-integrations | depend on runtime UI/Frontend/Bots/Explorer/Data integation |
+| council |   ***concil***  | on chain list of keys with attahed ***identity*** | tokenomics, marketing |
 
-### I want some code to be running in Picasso parachain
 
-I make sure that:
+### Collect release notes
+
+If one wants to release changes to runtime, he shares merged pull requests or `done` project items linked to git commits with `release engineers`.
+
+Only commits from main protected branch are accepted.
+
+These can be @ComposableFi/developers or product owners, but can be anybody qualified.
+
+Release engineers indicate good receipt of ask or request more information about proposed changes. 
+
+### 
 
 - All code is on main protected branch of this repo.
 - Code is part `dali` runtime configuration.
@@ -78,7 +102,8 @@ Must run on Dali Rococo Testnet
 
 - <https://github.com/paritytech/substrate/blob/master/frame/system/src/lib.rs>
 - <https://paritytech.github.io/substrate/master/sp_version/struct.RuntimeVersion.html>
-- Parith Technical explainers
 
+[explainers]:https://www.youtube.com/playlist?list=PLOyWqupZ-WGuAuS00rK-pebTMAOxW41W8
 [governance]:../doc/governance.md
 [upgrades]: https://docs.substrate.io/tutorials/get-started/forkless-upgrade
+[substitue user]:https://en.wikipedia.org/wiki/Sudo
