@@ -12,12 +12,27 @@ Document is not intentended to described detailed specificaitons of quality gate
 
 ## Constraints
 
-- Upgrades can be done only under `Root` origin, but cannot be `single signature`
+- Upgrades can be done only under `Root` origin, but cannot be `single signature`. And yet we must be able to release very fast, for examples in case of hotfix.
+
 - Upgrades are not immediate because runtime should be copied to parachain collators and relay validators and be enabled simultaneously on a specific block in the future.
+
+- There should be aligment of stakeholders on quality of release to be sure that bridged Picasso assets are secure. 
+
 
 ## Flow
 
-### Overview
+### Overview of flow
+
+Relase notes collected, specifically git commits which must be inlcuded into release are traceable to projects items or pull requests.
+
+Relevant notes and references to runtime build artifact (`wasm`) is shared into company channel with relevant representativses.
+
+Represantatives agree with this release.
+
+Release is stored as `preimage` on Picasso. Preimage hash is shared in channel with council collective representatives.
+
+Council creates default YES motion to vote on enactment of premiage on democracy. Shareholdes and technical collective fast track enactment of new runtime.
+
 
 
 ### I want some code to be running in Picasso parachain
