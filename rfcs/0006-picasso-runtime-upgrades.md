@@ -1,8 +1,12 @@
 # Overview
 
-Proposes flow to do runtime upgrades, likely similar to what others do.
+Proposes flow to do runtime upgrades of Picasso. 
 
-Expected that the reader has understood official Parity documents and explainers regarding upgrades.
+In its core [upgrades] are as described by Parity for developer network.
+
+Extended with security measures, like Karura and Kusama have, to protect liqiudity on these networks.
+
+Expected that the reader has understood official Parity documents and explainers regarding upgrades and [governance].
 
 ## Constraints
 
@@ -48,8 +52,9 @@ I make sure that:
 
 ## References
 
-- <https://docs.substrate.io/tutorials/get-started/forkless-upgrade/>
 - <https://github.com/paritytech/substrate/blob/master/frame/system/src/lib.rs>
 - <https://paritytech.github.io/substrate/master/sp_version/struct.RuntimeVersion.html>
 - Parith Technical explainers
-- [governance](../doc/governance.md)
+
+[governance]:../doc/governance.md
+[upgrades]: https://docs.substrate.io/tutorials/get-started/forkless-upgrade
