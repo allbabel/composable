@@ -47,7 +47,7 @@ Each step executed Here is mapping of teams to roles they play in process
 
 | role | groups of people| area |  
 |-----------------|-----|-----|
-| release engineers | @ComposableFi/sre| | 
+| release engineers | `@ComposableFi/sre`| | 
 | integration stakeholders| not direct contributers | depend on runtime UI/Frontend/Bots/Explorer/Data integation |
 | council |   ***concil***(on chain list of keys with attahed ***identity***) | tokenomics, marketing |
 | technical| ***technicalCollective*** | speed up on chain changes | 
@@ -76,7 +76,7 @@ If one wants to release changes to runtime, he shares merged pull requests or `d
 
 Only commits from main protected branch are accepted.
 
-These can be @ComposableFi/developers or product owners, but can be anybody qualified.
+These can be `@ComposableFi/developers` or product owners, but can be anybody qualified.
 
 Release engineers indicate good receipt of ask or request more information about proposed changes. 
 
@@ -96,13 +96,13 @@ Examples, complexity of upgrade, need to hot fix.
 
 On top of `core quality gates` next things can be considered:
 
-@ComposableFi/testers runs full relevant set of integrations tests on Dali Rococo Testnet(Testnet for short).
+`@ComposableFi/testers` runs full relevant set of integrations tests on Dali Rococo Testnet(Testnet for short).
 
-@ComposableFi/technical-writers ensure that available documentation is not in conflcit with Picasso  upgrade.
+`@ComposableFi/technical-writers` ensure that available documentation is not in conflcit with Picasso  upgrade.
 
-@ComposableFi/blockchain-integrations, @ComposableFi/bots consider that user interface, historical data explorer and bot integrations will not negatively imact relevant integration and user experience.
+`@ComposableFi/blockchain-integrations`, `@ComposableFi/bots` consider that user interface, historical data explorer and bot integrations will not negatively imact relevant integration and user experience.
 
-@ComposableFi/securty consider that runtime configuration(default values and included pallets) of Picasso is secure enough for relase. 
+`@ComposableFi/security` consider that runtime configuration(default values and included pallets) of Picasso is secure enough for relase. 
 
 Amount and structure of alignemnt is not specified here, but some should be.
 
@@ -110,14 +110,15 @@ Amount and structure of alignemnt is not specified here, but some should be.
 ### On chain upgrade operations
 
 
-### Preparing preimage
+#### Preparing preimage
 
-After enough aligment happend, `Release engineers` upload runtime `wasm` on chain as ***preimag***.
+After enough aligment happend, `Release engineers` upload runtime `wasm` on chain as ***preimage***.
 
 Collected notes, preimage hash and alignment output is send to channel with council representatives. 
 
+#### Council 
 
-### Council 
+
 
 
 ### As SRE, we help to deploy changes to the runtime
