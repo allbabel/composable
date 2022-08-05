@@ -43,13 +43,32 @@ Council creates default YES ***motion*** to vote on enactment of premiage on dem
 
 Each step executed Here is mapping of teams to roles they play in process
 
+#### Overview of actors
 
 | role | groups of people| area |  
-|-----------------|-----| 
+|-----------------|-----|-----|
 | release engineers | @ComposableFi/sre| | 
-| integration stakeholders| @ComposableFi/blockchain-integrations | depend on runtime UI/Frontend/Bots/Explorer/Data integation |
-| council |   ***concil***  | on chain list of keys with attahed ***identity*** | tokenomics, marketing |
+| integration stakeholders| not direct contributers | depend on runtime UI/Frontend/Bots/Explorer/Data integation |
+| council |   ***concil***(on chain list of keys with attahed ***identity***) | tokenomics, marketing |
+| technical| ***technicalCollective*** | speed up on chain changes | 
 
+#### Overview of core quality gates 
+
+Minimal set of gates.
+
+All changes to runtime are forward compatible.
+Specifically, if extinsic was added, it is retained and new version are added with larger dispatch identifiers.
+If storage was added, it is migrated by relevant runtime code on upgrade to new version. Storage is not ugprade in place as there consumers which may not be able to read it after it is changed. Same relates to events.
+
+Runtime was upraded on Dali Rococo Testnet and was producing blocks here at for several hours.
+
+Commit form which release is done passed full set of relevant check on protected main branch. 
+You cannot force push. 
+Each protocol on chain has ability to stop operating as of decision of its governance without dependency on runtime upgrade.
+
+Resonable represenatives of stakeholders approved release to Piccaso.
+
+All pallets included in Picasso runtime has sufficient amount of audit.
 
 ### Collect release notes
 
@@ -61,11 +80,29 @@ These can be @ComposableFi/developers or product owners, but can be anybody qual
 
 Release engineers indicate good receipt of ask or request more information about proposed changes. 
 
-### 
+### Alignment kick off
 
-- All code is on main protected branch of this repo.
-- Code is part `dali` runtime configuration.
-- Code is part of `picasso` runtime configuration.
+Release engineers produce `wasm` from commit of protected branch which contains all relevant commits considered for inclusion in Picasso upgrade.
+
+After some preliminary checks and aligment not specified here, Release engineers upgrade runtime on Dali Rococo Testnet using `sudo` key. 
+
+Release engineers share relevant release notes, `wasm` refence and how to access runs of new runtime to stakeholder via relevant channel.
+
+### Align
+
+Here stakeholders do their quality gates and vote aggree with release. 
+Amount of aggreent and exact teams to aggree depend on properties of upgrade. 
+Examples, complexity of upgrade, need to hot fix.
+
+On top of `core quality gates` next things can be considered:
+
+@ComposableFi/testers runs full relevant set of integrations tests on Dali Rococo Testnet(Testnet for short).
+
+@ComposableFi/technical-writers ensure that available documentation is not in conflcit with Picasso  upgrade.
+
+@ComposableFi/blockchain-integrations consider that user interface, historical data explorer and bot integrations will not negatively imact relevant integration and user experience.
+
+
 - Relevant(see other documents regarding acceptance criteria) preliminary checks, tests, and audits passed for added code.
 - I send git commit hash to #sre to ask to deploy `wasm` including that hash.
 
@@ -77,7 +114,7 @@ Must run on Dali Rococo Testnet
 - Given valid and credible git hash
 - We ensure that runtime `wasm` with referenced code is available in `GitHub Releases`
 - We collect all hashes to include in the next runtime upgrade.
-- We ask for consensus from @ComposableFi/testers (QA) and @ComposableFi/technical-writers (docs are up to date with runtime) and @ComposableFi/security and @ComposableFi/blockchain-integrations (UI/Frontend/Explorer) are for upgrade including relevant hashes
+- We ask for consensus from  (QA) and  (docs are up to date with runtime) and @ComposableFi/security and (UI/Frontend/Explorer) are for upgrade including relevant hashes
 
 ### With SUDO (key, multi-signature, proxy)
 
