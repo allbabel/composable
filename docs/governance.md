@@ -95,7 +95,8 @@ Ideated primitive which allows:
 
 ## Tokenomics
 
-See `composable/staking-rewards` and `polkadot/staking`, `substrae/treasury` and other `protocols` pallets on which `governances` can act.
+See `composable/staking-rewards` and `polkadot/staking`, `substrate/treasury`, `sora-xor/sora2-network` and other `protocols` pallets on which `governances` can act in mix of some tokenomics/incetives.
+
 And relevant chapters from the `book` on Angular, Apollo, Pablo, and Cubic.
 
 ## Multi-democracy
