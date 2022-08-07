@@ -145,6 +145,7 @@ Collected notes, preimage hash and alignment output is send to channel with coun
 
 ## References
 
+- Acala Github release page shows of what is good consituent of release, diff of commits or main and dependant repos, hash codes, tool reports, wasm description, etc.
 - <https://github.com/paritytech/substrate/blob/master/frame/system/src/lib.rs>
 - <https://paritytech.github.io/substrate/master/sp_version/struct.RuntimeVersion.html>
 
