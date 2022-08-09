@@ -152,7 +152,8 @@ CallError ::= bytes
 ```
 
 - `IP Register`: Contains the instruction pointer. Querying for the `IP` and `Result` can be used to compute the state of the interpreter on another chain.
-- `Relayer Register`: Contains the `Account` of the account triggering the initial execution. 
+- `Relayer Register`: Contains the `Account` of the account triggering the current execution. 
+- `Identity Register`: Contains the current `Identity` of the interpreter instance.
 
 As we add conditionals, such as the `If` instructions, the coercion of the `Result` registry will be defined. Note that the `Result` of the `Call` instruction can never be coerced into a `boolean`, and thus the execution of the following program is always undefined:
 
@@ -202,7 +203,7 @@ Assets ::= { AssetId : Balance }
 Transfer ::= Account Assets | Relayer Assets
 Call ::= bytes
 Spawn ::= Network BridgeSecurity Salt Program Assets
-Query ::= Network Salt
+Query ::= (Network Salt | Identity ) BridgeSecurity Program
 Account ::= bytes
 ```
 
@@ -213,7 +214,12 @@ Account ::= bytes
 
 ##### TBD
 
-- `Query`: Queries register values of an `XCVM` contract across chains. The provided Salt is used to look up the interpreter instance. It sets the current `Result Register` `QueryResult`.
+- `Query`: Queries register values of an `XCVM` contract across chains. The provided (Network Salt | Identity ) is used to look up the interpreter instance. It sets the current `Result Register` to `QueryResult`, and executes the Program on the origin chain. Will instantiate an instance if it not yet exists.
+
+```
+QueryResult ::= u32 Account Identity
+```
+
 - `Commit`: When the next error is encountered, all executed operations before `Commit` will not be reverted.
 - `Abort`: Ends the current execution with the provided message.
 
@@ -235,27 +241,7 @@ Amounts of assets can be specified using the `Balance` type. This allows foreign
 
 #### Querying 
 
-Registers are persisted after `Program` invocations and `Query`able from other chains. Querying does not alter the registry state, so multiple `Query` invocations will always return the same `IP` and `Result`.  
-
-A query returns a `QueryResult`:
-
-```
-QueryResult ::= Header Data 
-Header ::= Hash Number
-Data ::= 
-    Assets
-    | (Result, IP)
-    | bytes
-```
-
-To inspect a Query result from an XCVM program, use `Call` to a contract with the capabilities to handle it properly.
-
-```
-Query Ethereum 1                    // Pauses execution, which will be resumed once the 
-                                    // result values have been loaded.
-Call 0xmy_contract_on_this_chain    // my_contract_on_this_chain can inspect the Result Register of his                             
-                                    // instance and do something with the actual result
-```
+Registers are persisted after `Program` invocations and `Query`able from other chains. Querying does not alter the registry state, so multiple `Query` invocations will always return the same data.  
 
 ### Fees
 
@@ -365,3 +351,37 @@ Spawn XYZ BridgeSecurity::Deterministic 0 [
        ] { USDC: ALL },                         // We send over all our USDC back to ABC.
    ] { DOT: UNIT 100 },                         // We send over 100 DOT from ABC to XYZ.
 ```
+
+### Self-Referential Calls
+
+Many contracts have public functions with a `to` parameter, which indicates where funds should be sent to. Uniswap for example has the following interface for doing a [call](https://github.com/Uniswap/v2-core/blob/ee547b17853e71ed4e0101ccfd52e70d5acded58/contracts/interfaces/IUniswapV2Callee.sol#L4):
+
+```solidity
+function uniswapV2Call(address sender, uint amount0, uint amount1, bytes calldata data) external;
+```
+
+To properly construct this call and return funds to the interpreter instance, the `sender` parameter needs to be set to the interpreter's address. Normally this is an easy operation, as you can simply call the contract and pass `self`. However, from another chain, this is more difficult, as the address of the instance is unknown. There are three approaches to figuring out the interpreter's address:
+
+#### CREATE2
+
+The EVM has a specific [instruction](https://docs.openzeppelin.com/cli/2.8/deploying-with-create2#create2) which can be used to determine what the address of a contract will be based on keccak(0xFF, sender, salt, bytecode). In our case, the sender is the `XCVM Router` for that specific chain and known beforehand, the salt is the `Account, Salt` pair from the spawn call, and the bytecode is known beforehand as well. This means that when constructing the encoded uniswapV2Call, we can compute the `to` parameter on the origin chain. `CREATE2` is not available everywhere, however.
+
+#### Remote Instantiation First
+
+If we're not dynamically creating more remote interpreter instances (such as an instance per user), we can simply create noop `Spawn`s, and have an administrator set the correct addresses for each remote instance. This is a bit more centralized, but if performed correctly a solid approach.
+
+#### Querying
+
+If the number of remote interpreter instances is dynamic, and we cannot have off-chain actors provide address information, the best solution is to `Query` for the address.
+
+```
+Query XYZ BridgeSecurity::Deterministic 0 [     // Creates the new instance if it does not exist yet.
+    Call 0xMyLocalContract      // At this stage, the address is in the local Result register.
+    Transfer Relayer ...        // We still need to pay a fee, which we will do on the return trip.
+]
+```
+
+
+
+
+
