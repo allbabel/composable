@@ -210,18 +210,12 @@ Account ::= bytes
 - `Transfer`: Transfers funds within a chain between accounts.
 - `Call`: Executes a payload within the execution context of the chain, such as an extrinsic or smart contract invocation.
 - `Spawn`: Sends a `Program` to another chain to be executed asynchronously. The calling program is not informed of the execution state, but must `Query` explicitly.
-
-
-##### TBD
-
 - `Query`: Queries register values of an `XCVM` contract across chains. The provided (Network Salt | Identity ) is used to look up the interpreter instance. It sets the current `Result Register` to `QueryResult`, and executes the Program on the origin chain. Will instantiate an instance if it not yet exists.
 
 ```
-QueryResult ::= u32 Account Identity
+QueryResult ::= HeaderData u32 Account Identity
+HeaderData ::= u128 bytes
 ```
-
-- `Commit`: When the next error is encountered, all executed operations before `Commit` will not be reverted.
-- `Abort`: Ends the current execution with the provided message.
 
 For each instruction, this diagram approximately displays what happens: 
 
@@ -231,8 +225,6 @@ sequenceDiagram
     XCVM Interpreter->>Opaque Contract: Call
     XCVM Interpreter->>Gateway: Spawn
     XCVM Interpreter->>Gateway: Query
-    XCVM Interpreter->>XCVM Interpreter: Commit
-    XCVM Interpreter->>XCVM Interpreter: Abort
 ```
 
 #### Handling Balances
