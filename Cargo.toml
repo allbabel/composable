@@ -47,7 +47,17 @@ members = [
   "simnode/common",
   "utils/xcmp",
   "xcvm/lib/*",
+  "xcvm/cosmwasm/contracts/*"
 ]
+
+[profile.cosmwasm-contracts]
+inherits = "production"
+rpath = false
+overflow-checks = true
+opt-level = 3
+debug = false
+debug-assertions = false
+panic = "abort"
 
 [profile.release]
 # Polkadot runtime requires unwinding.
@@ -67,6 +77,8 @@ lto = true
 traitobject = { git = "https://github.com/reem/rust-traitobject.git", rev = "b3471a15917b2caf5a8b27debb0b4b390fc6634f"}
 # https://github.com/paritytech/parity-scale-codec/issues/348
 parity-scale-codec = { git = "https://github.com/paritytech/parity-scale-codec", tag = "parity-scale-codec-3.1.2" }
+# support btreemap serialization
+serde-json-wasm = { git = "https://github.com/hussein-aitlahcen/serde-json-wasm", rev = "4e175eaeffd625041bdecd251c0068a365def453" }
 # parity-scale-codec-derive = { git = "https://github.com/paritytech/parity-scale-codec", tag = "parity-scale-codec-derive-3.1.2" }
 
 # https://github.com/paritytech/substrate/pull/11843
