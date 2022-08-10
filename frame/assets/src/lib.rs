@@ -49,6 +49,7 @@
 //! - `mint_initialize_with_governance`
 //! - `mint_into`
 //! - `burn_from`
+// TODO: implement fungibles::Balanced like orml Tokens do
 
 #![cfg_attr(
 	not(test),

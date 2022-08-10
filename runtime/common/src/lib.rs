@@ -145,6 +145,14 @@ pub mod cross_chain_errors {
 		"Amount of asset is more than max possible";
 }
 
+impl<AssetsRegistry: AssetRatioInspect<AssetId = CurrencyId>> frame_support::traits::tokens::BalanceConversion<Balance, CurrencyId, Balance> for PriceConverter<AssetsRegistry> {
+    type Error = sp_runtime::DispatchError;
+
+    fn to_asset_balance(balance: Balance, asset_id: CurrencyId) -> Result<Balance, Self::Error> {
+        Self::get_price_inverse(asset_id, balance)
+    }
+}
+
 impl<AssetsRegistry: AssetRatioInspect<AssetId = CurrencyId>> MinimalOracle
 	for PriceConverter<AssetsRegistry>
 {
@@ -156,8 +164,9 @@ impl<AssetsRegistry: AssetRatioInspect<AssetId = CurrencyId>> MinimalOracle
 	) -> Result<Self::Balance, sp_runtime::DispatchError> {
 		match asset_id {
 			CurrencyId::PICA => Ok(amount),
-			CurrencyId::KSM => Ok(amount / 10),
-			CurrencyId::kUSD => Ok(amount / 10),
+			// TODO: wating values
+			CurrencyId::KSM => Ok(amount / 123),
+			CurrencyId::kUSD => Ok(amount / 13),
 			_ =>
 				if let Some(ratio) = AssetsRegistry::get_ratio(asset_id) {
 					if let Some(amount) = Ratio::checked_from_integer(amount) {

@@ -33,6 +33,7 @@ use orml_traits::parameter_type_with_key;
 pub use xcmp::{MaxInstructions, UnitWeightCost};
 
 use common::{
+	PriceConverter,
 	governance::native::{
 		EnsureRootOrHalfNativeCouncil, EnsureRootOrOneThirdNativeTechnical, NativeTreasury,
 	},
@@ -373,6 +374,20 @@ impl transaction_payment::Config for Runtime {
 	type LengthToFee = ConstantMultiplier<Balance, TransactionByteFee>;
 }
 
+
+pub struct TransferToTreasuryOrDrop;
+impl  asset_tx_payment::HandleCredit<AccountId, Tokens> for TransferToTreasuryOrDrop {
+    fn handle_credit(credit: fungibles::CreditOf<AccountId, Tokens>) {
+        let _ = <Tokens as fungibles::Balanced<AccountId>>::resolve(&TreasuryAccount::get(), credit);
+    }
+}
+
+impl asset_tx_payment::Config for Runtime {
+    type Fungibles = Tokens;
+    type OnChargeAssetTransaction = asset_tx_payment::FungiblesAdapter<PriceConverter<AssetsRegistry>, TransferToTreasuryOrDrop>;
+}
+
+
 impl sudo::Config for Runtime {
 	type Event = Event;
 	type Call = Call;
@@ -426,7 +441,7 @@ where
 			system::CheckEra::<Runtime>::from(era),
 			system::CheckNonce::<Runtime>::from(nonce),
 			system::CheckWeight::<Runtime>::new(),
-			transaction_payment::ChargeTransactionPayment::<Runtime>::from(tip),
+			asset_tx_payment::ChargeAssetTxPayment::<Runtime>::from(tip, None),
 		);
 		let raw_payload = SignedPayload::new(call, extra)
 			.map_err(|_e| {
@@ -1092,6 +1107,7 @@ construct_runtime!(
 		Sudo: sudo::{Pallet, Call, Config<T>, Storage, Event<T>} = 2,
 		RandomnessCollectiveFlip: randomness_collective_flip::{Pallet, Storage} = 3,
 		TransactionPayment: transaction_payment::{Pallet, Storage} = 4,
+		AssetTxPayment: asset_tx_payment::{Pallet, Storage} = 12,
 		Indices: indices::{Pallet, Call, Storage, Config<T>, Event<T>} = 5,
 		Balances: balances::{Pallet, Call, Storage, Config<T>, Event<T>} = 6,
 		Identity: identity::{Call, Event<T>, Pallet, Storage} = 7,
@@ -1162,6 +1178,7 @@ construct_runtime!(
 pub type Header = generic::Header<BlockNumber, BlakeTwo256>;
 /// Block type as expected by this runtime.
 pub type Block = generic::Block<Header, UncheckedExtrinsic>;
+
 /// The SignedExtension to the basic transaction logic.
 pub type SignedExtra = (
 	system::CheckNonZeroSender<Runtime>,
@@ -1171,7 +1188,7 @@ pub type SignedExtra = (
 	system::CheckEra<Runtime>,
 	system::CheckNonce<Runtime>,
 	system::CheckWeight<Runtime>,
-	transaction_payment::ChargeTransactionPayment<Runtime>,
+	asset_tx_payment::ChargeAssetTxPayment<Runtime>,
 );
 /// Unchecked extrinsic type as expected by this runtime.
 pub type UncheckedExtrinsic = generic::UncheckedExtrinsic<Address, Call, Signature, SignedExtra>;
@@ -1462,7 +1479,7 @@ impl_runtime_apis! {
 				system::CheckEra::<Runtime>::from(Era::Immortal),
 				system::CheckNonce::<Runtime>::from(nonce),
 				system::CheckWeight::<Runtime>::new(),
-				transaction_payment::ChargeTransactionPayment::<Runtime>::from(0),
+				asset_tx_payment::ChargeAssetTxPayment::<Runtime>::from(0, None),
 			);
 			let signature = MultiSignature::from(sr25519::Signature([0_u8;64]));
 			let address = AccountIdLookup::unlookup(signer.into());

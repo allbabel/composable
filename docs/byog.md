@@ -6,17 +6,17 @@ BYOG allows owners of nonnative tokens to execute transactions by paying fees in
 
 On Picasso and [other Dotsama parachains](https://wiki.acala.network/learn/flexible-fees), such mechanisms are built into the runtime. 
 
-`On ramps` and [meta transactions](https://docs.polygon.technology/docs/category/meta-transactions) handle such possibilities on other chains. 
+`On ramps` and [meta (gas less) transactions](https://docs.polygon.technology/docs/category/meta-transactions) handle such possibilities on other chains.
 
 ## Current state
 
-Any cross-chain (XCMP) transactions will choose what assets to use to pay for the transaction.
+Any cross-chain (XCMP) transactions can choose what assets to use to pay for the transaction.
 
-Direct native transactions will check several hardcoded foreign assets by a predefined order and try to pay using these on behalf of a user.
+Direct transaction can add header to pick up `payment` asset. 
 
-In the future, native transaction assets will be configurable and share ratio definitions with XCMP. In addition, direct Pablo-based swaps from an asset to PICA will be available later.
+`Payment` assets are configurable and configuration is shared.
 
-No dynamic fees are enabled now. 
+In future, direct Pablo-based swaps from an asset to PICA will be available later.
 
 Minting, burns, and airdrops are out of the scope of this feature.
 
@@ -85,8 +85,9 @@ There is no unified view of all fees. So if there will be, given fees prediction
 
 ### Pallets
 
-- transaction-fees
 - xcmp
 - pablo
 - assets-registry
 - currency-factory
+- https://github.com/AcalaNetwork/Acala/blob/master/modules/transaction-payment/src/lib.rs
+- https://github.com/paritytech/substrate/blob/master/frame/transaction-payment/asset-tx-payment/src/lib.rs
