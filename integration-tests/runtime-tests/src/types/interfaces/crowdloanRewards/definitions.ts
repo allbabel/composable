@@ -185,12 +185,13 @@ export default {
     PalletIbcEventsIbcEvent: "Null",
     PalletIbcErrorsIbcError: "Null",
     PalletMosaicAmmSwapInfo: "Null",
-    ComposableTraitsStakingRewardPool: "Null",
-    ComposableTraitsStakingRewardPoolConfiguration: "Null",
     IbcTransferPalletParams: "Null",
     IbcTransferTransferParams: "Null",
     ComposableTraitsOracleRewardTracker: "Null",
-    ComposableTraitsStakingStake: "Null"
-
+    ComposableTraitsVestingVestingScheduleInfo: "Null",
+    ComposableTraitsVestingVestingScheduleIdSet: "Null",
+    ComposableTraitsAccountProxyProxyType: "Null",
+    PalletAccountProxyAnnouncement: "Null",
+    ComposableTraitsAccountProxyProxyDefinition: "Null",
   }
 };
