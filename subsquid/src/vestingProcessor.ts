@@ -43,20 +43,20 @@ export function createVestingSchedule(
 }
 
 /**
- * Updates database with vesting schedule information
+ * Based on the event, return a new VestingSchedule.
  * @param ctx
  * @param event
  */
-export async function processVestingScheduleAddedEvent(
+export function getNewVestingSchedule(
   ctx: EventHandlerContext,
   event: VestingVestingScheduleAddedEvent
-) {
+): VestingSchedule {
   const { from, to, asset, schedule } = getVestingScheduleAddedEvent(event);
 
-  const toAccount = encodeAccount(to);
   const fromAccount = encodeAccount(from);
+  const toAccount = encodeAccount(to);
 
-  const vestingSchedule = new VestingSchedule({
+  return new VestingSchedule({
     id: randomUUID(),
     from: fromAccount,
     eventId: ctx.event.id,
@@ -64,6 +64,18 @@ export async function processVestingScheduleAddedEvent(
     to: toAccount,
     schedule: createVestingSchedule(schedule),
   });
+}
+
+/**
+ * Updates database with vesting schedule information
+ * @param ctx
+ */
+export async function processVestingScheduleAddedEvent(
+  ctx: EventHandlerContext
+) {
+  const event = new VestingVestingScheduleAddedEvent(ctx);
+
+  const vestingSchedule = getNewVestingSchedule(ctx, event);
 
   await ctx.store.save(vestingSchedule);
 }
