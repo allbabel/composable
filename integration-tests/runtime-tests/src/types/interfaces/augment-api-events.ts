@@ -2,7 +2,7 @@
 /* eslint-disable */
 
 import type { ComposableTraitsDefiCurrencyPairCurrencyId } from '@composable/types/interfaces/common';
-import type { CommonMosaicRemoteAssetId, ComposableSupportEthereumAddress, ComposableTraitsCallFilterCallFilterEntry, ComposableTraitsLendingUpdateInput, ComposableTraitsTimeTimeReleaseFunction, ComposableTraitsVestingVestingSchedule, ComposableTraitsXcmAssetsXcmAssetLocation, FrameSupportScheduleLookupError, PalletCrowdloanRewardsModelsRemoteAccount, PalletDemocracyVoteAccountVote, PalletDutchAuctionSellOrder, PalletIbcErrorsIbcError, PalletIbcEventsIbcEvent, PalletMosaicAmmSwapInfo, PalletMosaicDecayBudgetPenaltyDecayer, PalletMosaicNetworkInfo } from '@composable/types/interfaces/crowdloanRewards';
+import type { CommonMosaicRemoteAssetId, ComposableSupportEthereumAddress, ComposableTraitsCallFilterCallFilterEntry, ComposableTraitsLendingUpdateInput, ComposableTraitsTimeTimeReleaseFunction, ComposableTraitsVestingVestingSchedule, ComposableTraitsVestingVestingScheduleIdSet, ComposableTraitsXcmAssetsXcmAssetLocation, FrameSupportScheduleLookupError, PalletCrowdloanRewardsModelsRemoteAccount, PalletDemocracyVoteAccountVote, PalletDutchAuctionSellOrder, PalletIbcErrorsIbcError, PalletIbcEventsIbcEvent, PalletMosaicAmmSwapInfo, PalletMosaicDecayBudgetPenaltyDecayer, PalletMosaicNetworkInfo } from '@composable/types/interfaces/crowdloanRewards';
 import type { PalletCurrencyFactoryRangesRange } from '@composable/types/interfaces/currencyFactory';
 import type { PalletDemocracyVoteThreshold } from '@composable/types/interfaces/democracy';
 import type { ComposableTraitsDexFee } from '@composable/types/interfaces/pablo';
@@ -895,6 +895,7 @@ declare module '@polkadot/api-base/types/events' {
        * Pool with specified id `T::RewardPoolId` was created successfully by `T::AccountId`.
        **/
       RewardPoolCreated: AugmentedEvent<ApiType, [u16, AccountId32, u32]>;
+      RewardPoolUpdated: AugmentedEvent<ApiType, [u16]>;
       /**
        * Reward transfer event.
        **/
@@ -1210,11 +1211,11 @@ declare module '@polkadot/api-base/types/events' {
       /**
        * Claimed vesting. \[who, locked_amount\]
        **/
-      Claimed: AugmentedEvent<ApiType, [AccountId32, u128, u128]>;
+      Claimed: AugmentedEvent<ApiType, [AccountId32, u128, ComposableTraitsVestingVestingScheduleIdSet, u128, u128]>;
       /**
        * Added new vesting schedule. \[from, to, schedule\]
        **/
-      VestingScheduleAdded: AugmentedEvent<ApiType, [AccountId32, AccountId32, u128, ComposableTraitsVestingVestingSchedule]>;
+      VestingScheduleAdded: AugmentedEvent<ApiType, [AccountId32, AccountId32, u128, u128, ComposableTraitsVestingVestingSchedule]>;
       /**
        * Updated vesting schedules. \[who\]
        **/

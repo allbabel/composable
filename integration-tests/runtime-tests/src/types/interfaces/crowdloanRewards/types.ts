@@ -1,7 +1,7 @@
 // Auto-generated via `yarn polkadot-types-from-defs`, do not edit
 /* eslint-disable */
 
-import type { ComposableTraitsDefiCurrencyPairCurrencyId, CurrencyId } from '@composable/types/interfaces/common';
+import type { ComposableTraitsDefiCurrencyPairCurrencyId } from '@composable/types/interfaces/common';
 import type { Enum, Null, Struct, bool, u128, u32 } from '@polkadot/types-codec';
 import type { ITuple } from '@polkadot/types-codec/types';
 import type { EthereumAccountId } from '@polkadot/types/interfaces/eth';
@@ -30,31 +30,6 @@ export interface ComposableTraitsAssetsXcmAssetLocation extends Null {}
 
 /** @name ComposableTraitsAuctionAuctionStepFunction */
 export interface ComposableTraitsAuctionAuctionStepFunction extends Null {}
-
-/** @name ComposableTraitsBondedFinanceBondDuration */
-export interface ComposableTraitsBondedFinanceBondDuration extends Struct {
-  readonly Finite: {
-    readonly returnIn: u32;
-  } & Struct;
-}
-
-/** @name ComposableTraitsBondedFinanceBondOffer */
-export interface ComposableTraitsBondedFinanceBondOffer extends Struct {
-  readonly beneficiary: AccountId32;
-  readonly asset: CurrencyId;
-  readonly bondPrice: u128;
-  readonly nbOfBonds: u128;
-  readonly maturity: ComposableTraitsBondedFinanceBondDuration;
-  readonly reward: ComposableTraitsBondedFinanceBondOfferReward;
-  readonly keepAlive: bool;
-}
-
-/** @name ComposableTraitsBondedFinanceBondOfferReward */
-export interface ComposableTraitsBondedFinanceBondOfferReward extends Struct {
-  readonly asset: CurrencyId;
-  readonly amount: u128;
-  readonly maturity: u32;
-}
 
 /** @name ComposableTraitsCallFilterCallFilterEntry */
 export interface ComposableTraitsCallFilterCallFilterEntry extends Null {}
@@ -118,6 +93,9 @@ export interface ComposableTraitsStakingRewardPool extends Null {}
 /** @name ComposableTraitsStakingRewardPoolConfiguration */
 export interface ComposableTraitsStakingRewardPoolConfiguration extends Null {}
 
+/** @name ComposableTraitsStakingRewardUpdate */
+export interface ComposableTraitsStakingRewardUpdate extends Null {}
+
 /** @name ComposableTraitsStakingStake */
 export interface ComposableTraitsStakingStake extends Null {}
 
@@ -129,6 +107,12 @@ export interface ComposableTraitsVaultVaultConfig extends Null {}
 
 /** @name ComposableTraitsVestingVestingSchedule */
 export interface ComposableTraitsVestingVestingSchedule extends Null {}
+
+/** @name ComposableTraitsVestingVestingScheduleIdSet */
+export interface ComposableTraitsVestingVestingScheduleIdSet extends Null {}
+
+/** @name ComposableTraitsVestingVestingScheduleInfo */
+export interface ComposableTraitsVestingVestingScheduleInfo extends Null {}
 
 /** @name ComposableTraitsXcmAssetsForeignMetadata */
 export interface ComposableTraitsXcmAssetsForeignMetadata extends Null {}
