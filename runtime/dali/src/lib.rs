@@ -33,14 +33,13 @@ use orml_traits::parameter_type_with_key;
 pub use xcmp::{MaxInstructions, UnitWeightCost};
 
 use common::{
-	PriceConverter,
 	governance::native::{
 		EnsureRootOrHalfNativeCouncil, EnsureRootOrOneThirdNativeTechnical, NativeTreasury,
 	},
 	impls::DealWithFees,
 	multi_existential_deposits, AccountId, AccountIndex, Address, Amount, AuraId, Balance,
 	BlockNumber, BondOfferId, Hash, MaxStringSize, Moment, MosaicRemoteAssetId,
-	NativeExistentialDeposit, PoolId, PositionId, RewardPoolId, Signature,
+	NativeExistentialDeposit, PoolId, PositionId, PriceConverter, RewardPoolId, Signature,
 	AVERAGE_ON_INITIALIZE_RATIO, DAYS, HOURS, MAXIMUM_BLOCK_WEIGHT, MILLISECS_PER_BLOCK,
 	NORMAL_DISPATCH_RATIO, SLOT_DURATION,
 };
@@ -374,19 +373,21 @@ impl transaction_payment::Config for Runtime {
 	type LengthToFee = ConstantMultiplier<Balance, TransactionByteFee>;
 }
 
-
 pub struct TransferToTreasuryOrDrop;
-impl  asset_tx_payment::HandleCredit<AccountId, Tokens> for TransferToTreasuryOrDrop {
-    fn handle_credit(credit: fungibles::CreditOf<AccountId, Tokens>) {
-        let _ = <Tokens as fungibles::Balanced<AccountId>>::resolve(&TreasuryAccount::get(), credit);
-    }
+impl asset_tx_payment::HandleCredit<AccountId, Tokens> for TransferToTreasuryOrDrop {
+	fn handle_credit(credit: fungibles::CreditOf<AccountId, Tokens>) {
+		let _ =
+			<Tokens as fungibles::Balanced<AccountId>>::resolve(&TreasuryAccount::get(), credit);
+	}
 }
 
 impl asset_tx_payment::Config for Runtime {
-    type Fungibles = Tokens;
-    type OnChargeAssetTransaction = asset_tx_payment::FungiblesAdapter<PriceConverter<AssetsRegistry>, TransferToTreasuryOrDrop>;
+	type Fungibles = Tokens;
+	type OnChargeAssetTransaction = asset_tx_payment::FungiblesAdapter<
+		PriceConverter<AssetsRegistry>,
+		TransferToTreasuryOrDrop,
+	>;
 }
-
 
 impl sudo::Config for Runtime {
 	type Event = Event;

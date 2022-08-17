@@ -12,7 +12,7 @@ On Picasso and [other Dotsama parachains](https://wiki.acala.network/learn/flexi
 
 Any cross-chain (XCMP) transactions can choose what assets to use to pay for the transaction.
 
-Direct transaction can add header to pick up `payment` asset. 
+Direct transaction can add header to pick up `payment` asset or accounts can configure default [payment asset](https://github.com/paritytech/substrate/discussions/12055).
 
 `Payment` assets are configurable and configuration is shared.
 
