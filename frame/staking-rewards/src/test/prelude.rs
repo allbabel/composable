@@ -10,6 +10,9 @@ pub type AccountId = <<Signature as Verify>::Signer as IdentifyAccount>::Account
 #[cfg(test)]
 pub use composable_tests_helpers::test::currency::*;
 
+/// Mock ID for staking fNFT collection
+pub(crate) const STAKING_FNFT_COLLECTION_ID: CurrencyId = 1;
+
 pub(crate) const fn block_seconds(block_number: u64) -> u128 {
 	((MILLISECS_PER_BLOCK / 1_000) * block_number) as u128
 }
