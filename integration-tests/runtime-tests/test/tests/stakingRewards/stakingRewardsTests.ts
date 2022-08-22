@@ -264,6 +264,7 @@ describe.only("tx.stakingRewards Tests", function () {
       );
       expect(poolInfo.unwrap().assetId.toString()).to.equal("1");
       console.debug(poolInfo.unwrap().rewards.toJSON()["1"]["rewardRate"]["amount"]);
+      // ToDo (D.Roth): Change comparison to amount from above.
       expect(poolInfo.unwrap().rewards.toJSON()["1"]["rewardRate"]["amount"]).to.be.greaterThan(
         poolInfoBefore.unwrap().rewards.toJSON()["1"]["rewardRate"]["amount"]
       );
