@@ -122,6 +122,14 @@ pub mod pallet {
 			/// Extended amount
 			amount: T::Balance,
 		},
+		UnstakingSlashed {
+			/// Owner of the stake.
+			owner: T::AccountId,
+			/// Position Id of newly created stake.
+			position_id: T::PositionId,
+			/// Amount that has been slashed.
+			slash_amount: T::Balance,
+		},
 		Unstaked {
 			/// Owner of the stake.
 			owner: T::AccountId,
@@ -705,7 +713,13 @@ pub mod pallet {
 			rewards_pool.claimed_shares = rewards_pool.claimed_shares.safe_add(&stake.share)?;
 
 			let stake_with_penalty = if early_unlock {
-				(Perbill::one() - stake.lock.unlock_penalty).mul_ceil(stake.stake)
+				let amount = (Perbill::one() - stake.lock.unlock_penalty).mul_ceil(stake.stake);
+				Self::deposit_event(Event::<T>::UnstakingSlashed {
+					owner: who.clone(),
+					position_id: *position_id,
+					slash_amount: amount.clone(),
+				});
+				amount
 			} else {
 				stake.stake
 			};
