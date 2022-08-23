@@ -1,16 +1,16 @@
 # Overview
 
-Bring your own gas(`BYOG`) on Picasso parachain use cases.
+Use cases of Bring your own gas (`BYOG`) on the Picasso parachain.
 
-BYOG allows owners of nonnative tokens to execute transactions by paying fees in foreign currencies.
+BYOG allows owners of non-native tokens to execute transactions by paying fees in foreign currencies.
 
-On Picasso and [other Dotsama parachains](https://wiki.acala.network/learn/flexible-fees), such mechanisms are built into the runtime. 
+Such mechanisms are built into the runtime on Picasso and [other Dotsama parachains](https://wiki.acala.network/learn/flexible-fees). 
 
 `On ramps` and [meta (gas less) transactions](https://docs.polygon.technology/docs/category/meta-transactions) handle such possibilities on other chains.
 
 ## Current state
 
-Any cross-chain (XCMP) transactions can choose what assets to use to pay for the transaction.
+Any cross-chain (XCMP) transactions can choose what assets to use to pay for the transaction. 
 
 Direct transaction can add header to pick up `payment` asset or accounts can configure default [payment asset](https://github.com/paritytech/substrate/discussions/12055).
 
@@ -24,15 +24,15 @@ Fees are small now, but later we will have a way to show the exact fee for a tra
 
 ## How much does my transaction cost?
 
-When a transaction is executed, its `weight` is known and is roughly equal to compute resources it consumes.
+When a transaction is executed, its `weight` is known and roughly equal to the computational resources it consumes.
 
 Weight is converted into an appropriate amount of PICA by the polynomial formula.
 
-Formula dynamically changes depending on desired target load of the network.
+The formula dynamically changes depending on the desired target load of the network.
 
-From now and later will say that transactions are paid directly in PICA for simplicity.
+From this point onwards we say that transactions are paid directly in PICA for simplicity.
 
-For details of fees, see later chapter.
+For details on fees, see the chapters below.
 
 ## How can one pay for a transaction when one has USD/KSM?
 
@@ -45,27 +45,31 @@ an appropriate amount of foreign assets will be calculated and transferred to th
 The amount would be defined by the configured or hardcoded ratio of PICA to USD/KSM. 
 If there is no ratio defined, a transaction will fail.
 
-Later, Pablo governed and native governance approved DEX will be checked for direct swaps of PICA to USD/KSM.
+Later, Pablo governed and native governance approved DEX will be checked for direct swaps of PICA to/from USD/KSM.
 
-In this case, the native treasury will get PICA. 
-Pablo will get foreign assets.
-If there is no direct mapping approved mapping, configured or hardcoded ratios will be used as before.
-The transaction will fail if slippage is unacceptable or the pool is empty. It will not try to use configured or hardcoded ratio.
+In this case:
+- The native treasury will get PICA. 
+- Pablo will get foreign assets.
+- If there is no direct and approved mapping, configured or hardcoded ratios will be used as before.
+- if slippage is unacceptable or the pool is empty the transaction will fail. It will not try to use configured or hardcoded ratio.
 
-The currency in which users can pay on Picassis is `payment currency`.
+The currency in which users can pay on Picasso is `payment currency`.
 
 ## Direct native transaction specific
 
-Later user will be able to configure his preferred payment token by default. If the user peeks at such a token, then direct transactions are paid only in this token. No other tokens are tried. 
+User is able to configure his preferred payment token by default. 
+If the user peeks at such a token, then direct transactions are paid only in this token.
+No other tokens are tried. 
 
-Switching configuration is paid in a token to which configuration is switched. User does ED enough to clear to reset the configuration to default later.
+Switching configuration is paid in a token to which configuration is switched. 
+The user's existential deposit(ED) must be enough to reset the configuration to default later.
 
 
 ## XCMP specific 
 
-If a user tried to pay in a currency that is not payment, it would be trapped in a binary blob.
+If a user tried to pay in a currency that is not `payment currency`, it would be trapped in a binary blob.
 
-If the user overpaid for a transaction, the remaining goes to the user's account on Picasso. The whole amount goes to the user account if the payment is too small.
+If the user overpaid for a transaction, the remaining funds go to the user's account on Picasso. The whole amount goes to the user account if the payment is too small.
 
 
 ## Fee calculator
@@ -85,9 +89,10 @@ There is no unified view of all fees. So if there will be, given fees prediction
 
 ### Pallets
 
-- xcmp
-- pablo
-- assets-registry
-- currency-factory
-- https://github.com/AcalaNetwork/Acala/blob/master/modules/transaction-payment/src/lib.rs
-- https://github.com/paritytech/substrate/blob/master/frame/transaction-payment/asset-tx-payment/src/lib.rs
+- [Acala transaction-payment](https://github.com/AcalaNetwork/Acala/blob/master/modules/transaction-payment/src/lib.rs)
+- [Substrate transaction-payment](https://github.com/paritytech/substrate/blob/master/frame/transaction-payment/asset-tx-payment/src/lib.rs)
+- [transaction-fee](../frame/transaction-fee)
+- [xcmp](https://github.com/open-web3-stack/open-runtime-module-library/tree/master/xtokens)
+- [pablo](../frame/pablo)
+- [assets-registry](../frame/assets-registry)
+- [currency-factory](../frame/currency-factory)
