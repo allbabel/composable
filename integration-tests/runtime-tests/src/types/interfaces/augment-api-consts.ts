@@ -1,18 +1,11 @@
 // Auto-generated via `yarn polkadot-types-from-chain`, do not edit
 /* eslint-disable */
 
-import type { ApiTypes } from "@polkadot/api-base/types";
-import type { bool, Bytes, Option, u128, u16, u32, u64, u8, U8aFixed } from "@polkadot/types-codec";
-import type { Codec } from "@polkadot/types-codec/types";
-import type { AccountId32, Perbill, Permill } from "@polkadot/types/interfaces/runtime";
-import type {
-  FrameSupportPalletId,
-  FrameSupportWeightsRuntimeDbWeight,
-  FrameSystemLimitsBlockLength,
-  FrameSystemLimitsBlockWeights,
-  SpVersionRuntimeVersion,
-  XcmV1MultiLocation
-} from "@polkadot/types/lookup";
+import type { ApiTypes } from '@polkadot/api-base/types';
+import type { Bytes, Option, U8aFixed, bool, u128, u16, u32, u64, u8 } from '@polkadot/types-codec';
+import type { Codec } from '@polkadot/types-codec/types';
+import type { AccountId32, Perbill, Permill } from '@polkadot/types/interfaces/runtime';
+import type { FrameSupportPalletId, FrameSupportWeightsRuntimeDbWeight, FrameSystemLimitsBlockLength, FrameSystemLimitsBlockWeights, SpVersionRuntimeVersion, XcmV1MultiLocation } from '@polkadot/types/lookup';
 
 declare module '@polkadot/api-base/types/consts' {
   export interface AugmentedConsts<ApiType extends ApiTypes> {

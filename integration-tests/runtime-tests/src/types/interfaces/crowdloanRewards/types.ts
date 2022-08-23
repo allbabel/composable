@@ -1,13 +1,13 @@
 // Auto-generated via `yarn polkadot-types-from-defs`, do not edit
 /* eslint-disable */
 
-import type { ComposableTraitsDefiCurrencyPairCurrencyId, CurrencyId } from "@composable/types/interfaces/common";
-import type { bool, Enum, Null, Struct, u128, u32 } from "@polkadot/types-codec";
-import type { ITuple } from "@polkadot/types-codec/types";
-import type { EthereumAccountId } from "@polkadot/types/interfaces/eth";
-import type { EcdsaSignature, MultiSignature } from "@polkadot/types/interfaces/extrinsics";
-import type { ParachainInherentData, PersistedValidationData } from "@polkadot/types/interfaces/parachains";
-import type { AccountId32, Balance, Permill } from "@polkadot/types/interfaces/runtime";
+import type { ComposableTraitsDefiCurrencyPairCurrencyId, CurrencyId } from '@composable/types/interfaces/common';
+import type { Enum, Null, Struct, bool, u128, u32 } from '@polkadot/types-codec';
+import type { ITuple } from '@polkadot/types-codec/types';
+import type { EthereumAccountId } from '@polkadot/types/interfaces/eth';
+import type { EcdsaSignature, MultiSignature } from '@polkadot/types/interfaces/extrinsics';
+import type { ParachainInherentData, PersistedValidationData } from '@polkadot/types/interfaces/parachains';
+import type { AccountId32, Balance, Permill } from '@polkadot/types/interfaces/runtime';
 
 /** @name CommonMosaicRemoteAssetId */
 export interface CommonMosaicRemoteAssetId extends Null {}

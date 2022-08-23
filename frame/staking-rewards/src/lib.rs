@@ -717,7 +717,7 @@ pub mod pallet {
 				Self::deposit_event(Event::<T>::UnstakingSlashed {
 					owner: who.clone(),
 					position_id: *position_id,
-					slash_amount: amount.clone(),
+					slash_amount: amount,
 				});
 				amount
 			} else {

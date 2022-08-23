@@ -1,63 +1,16 @@
 // Auto-generated via `yarn polkadot-types-from-chain`, do not edit
 /* eslint-disable */
 
-import type { ComposableTraitsDefiCurrencyPairCurrencyId } from "@composable/types/interfaces/common";
-import type {
-  CommonMosaicRemoteAssetId,
-  ComposableSupportEthereumAddress,
-  ComposableTraitsAccountProxyProxyType,
-  ComposableTraitsCallFilterCallFilterEntry,
-  ComposableTraitsLendingUpdateInput,
-  ComposableTraitsTimeTimeReleaseFunction,
-  ComposableTraitsVestingVestingSchedule,
-  ComposableTraitsVestingVestingScheduleIdSet,
-  ComposableTraitsXcmAssetsXcmAssetLocation,
-  FrameSupportScheduleLookupError,
-  PalletCrowdloanRewardsModelsRemoteAccount,
-  PalletDemocracyVoteAccountVote,
-  PalletDutchAuctionSellOrder,
-  PalletIbcErrorsIbcError,
-  PalletIbcEventsIbcEvent,
-  PalletMosaicAmmSwapInfo,
-  PalletMosaicDecayBudgetPenaltyDecayer,
-  PalletMosaicNetworkInfo
-} from "@composable/types/interfaces/crowdloanRewards";
-import type { PalletCurrencyFactoryRangesRange } from "@composable/types/interfaces/currencyFactory";
-import type { PalletDemocracyVoteThreshold } from "@composable/types/interfaces/democracy";
-import type { ComposableTraitsDexFee } from "@composable/types/interfaces/pablo";
-import type { ApiTypes } from "@polkadot/api-base/types";
-import type {
-  bool,
-  BTreeMap,
-  Bytes,
-  Null,
-  Option,
-  Result,
-  u128,
-  u16,
-  u32,
-  u64,
-  u8,
-  U8aFixed,
-  Vec
-} from "@polkadot/types-codec";
-import type { ITuple } from "@polkadot/types-codec/types";
-import type { AccountId32, H256, Percent } from "@polkadot/types/interfaces/runtime";
-import type {
-  FrameSupportTokensMiscBalanceStatus,
-  FrameSupportWeightsDispatchInfo,
-  PalletMultisigTimepoint,
-  SpRuntimeDispatchError,
-  XcmV1MultiAsset,
-  XcmV1MultiassetMultiAssets,
-  XcmV1MultiLocation,
-  XcmV2Response,
-  XcmV2TraitsError,
-  XcmV2TraitsOutcome,
-  XcmV2Xcm,
-  XcmVersionedMultiAssets,
-  XcmVersionedMultiLocation
-} from "@polkadot/types/lookup";
+import type { ComposableTraitsDefiCurrencyPairCurrencyId } from '@composable/types/interfaces/common';
+import type { CommonMosaicRemoteAssetId, ComposableSupportEthereumAddress, ComposableTraitsAccountProxyProxyType, ComposableTraitsCallFilterCallFilterEntry, ComposableTraitsLendingUpdateInput, ComposableTraitsTimeTimeReleaseFunction, ComposableTraitsVestingVestingSchedule, ComposableTraitsVestingVestingScheduleIdSet, ComposableTraitsXcmAssetsXcmAssetLocation, FrameSupportScheduleLookupError, PalletCrowdloanRewardsModelsRemoteAccount, PalletDemocracyVoteAccountVote, PalletDutchAuctionSellOrder, PalletIbcErrorsIbcError, PalletIbcEventsIbcEvent, PalletMosaicAmmSwapInfo, PalletMosaicDecayBudgetPenaltyDecayer, PalletMosaicNetworkInfo } from '@composable/types/interfaces/crowdloanRewards';
+import type { PalletCurrencyFactoryRangesRange } from '@composable/types/interfaces/currencyFactory';
+import type { PalletDemocracyVoteThreshold } from '@composable/types/interfaces/democracy';
+import type { ComposableTraitsDexFee } from '@composable/types/interfaces/pablo';
+import type { ApiTypes } from '@polkadot/api-base/types';
+import type { BTreeMap, Bytes, Null, Option, Result, U8aFixed, Vec, bool, u128, u16, u32, u64, u8 } from '@polkadot/types-codec';
+import type { ITuple } from '@polkadot/types-codec/types';
+import type { AccountId32, H256, Percent } from '@polkadot/types/interfaces/runtime';
+import type { FrameSupportTokensMiscBalanceStatus, FrameSupportWeightsDispatchInfo, PalletMultisigTimepoint, SpRuntimeDispatchError, XcmV1MultiAsset, XcmV1MultiLocation, XcmV1MultiassetMultiAssets, XcmV2Response, XcmV2TraitsError, XcmV2TraitsOutcome, XcmV2Xcm, XcmVersionedMultiAssets, XcmVersionedMultiLocation } from '@polkadot/types/lookup';
 
 declare module '@polkadot/api-base/types/events' {
   export interface AugmentedEvents<ApiType extends ApiTypes> {
@@ -967,6 +920,7 @@ declare module '@polkadot/api-base/types/events' {
       StakeAmountExtended: AugmentedEvent<ApiType, [u128, u128]>;
       Staked: AugmentedEvent<ApiType, [u16, AccountId32, u128, u64, u128, bool]>;
       Unstaked: AugmentedEvent<ApiType, [AccountId32, u128]>;
+      UnstakingSlashed: AugmentedEvent<ApiType, [AccountId32, u128, u128]>;
       /**
        * Generic event
        **/

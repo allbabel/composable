@@ -1,8 +1,8 @@
 // Auto-generated via `yarn polkadot-types-from-defs`, do not edit
 /* eslint-disable */
 
-import type { BTreeMap, Null, Struct, u128, u16, u32, u64 } from "@polkadot/types-codec";
-import type { AccountId, AccountId32, AssetId, Balance, Perbill } from "@polkadot/types/interfaces/runtime";
+import type { BTreeMap, Null, Struct, u128, u16, u32, u64 } from '@polkadot/types-codec';
+import type { AccountId, AccountId32, AssetId, Balance, Perbill } from '@polkadot/types/interfaces/runtime';
 
 /** @name ComposableTraitsStakingLockLockConfig */
 export interface ComposableTraitsStakingLockLockConfig extends Struct {
