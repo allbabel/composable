@@ -6,9 +6,13 @@ In its core [upgrades]: https://docs.substrate.io/tutorials/get-started/forkless
 
 Extended with security measures, like Karura and Kusama have, to protect liqiudity on these networks.
 
-Expected that the reader has understood official Parity documents and [explainers], [upgrades], [governance].
+It is expected that the reader has understood: 
+- [Official Parity documents](https://docs.substrate.io/)
+- [explainers](https://www.youtube.com/playlist?list=PLOyWqupZ-WGuAuS00rK-pebTMAOxW41W8)
+- [upgrades](https://docs.substrate.io/tutorials/get-started/forkless-upgrade)
+- [governance](../doc/governance.md)
 
-It is helpfull if reader undrestans *nix [substitute user] operation. 
+It is helpful if the reader understands *nix [substitute user](https://en.wikipedia.org/wiki/Sudo) operation. 
 
 Document is not intentended to described detailed specificaitons of quality gates.
 
