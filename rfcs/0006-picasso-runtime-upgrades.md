@@ -14,9 +14,9 @@ It is expected that the reader has understood:
 
 It is helpful if the reader understands *nix [substitute user](https://en.wikipedia.org/wiki/Sudo) operation. 
 
-Document is not intentended to described detailed specificaitons of quality gates.
+This document is not intentended to described detailed specificaitons of quality gates.
 
-Document specifies relevant domains and stakeholders and teams, but not names exactly what communication channel these would use as communicaiton medium.
+The Document specifies relevant domains and stakeholders and teams, but doesn't name exactly what communication channel these would use as communication medium.
 
 ## Constraints
 
