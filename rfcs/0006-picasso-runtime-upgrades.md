@@ -82,7 +82,7 @@ Only commits from main protected branch are accepted.
 
 These can be `@ComposableFi/developers` or product owners, but can be anybody qualified.
 
-Release engineers indicate good receipt of ask or request more information about proposed changes. 
+Release engineers confirm proper receipt of the proposed changes or request more information.
 
 ### Alignment kick off
 
