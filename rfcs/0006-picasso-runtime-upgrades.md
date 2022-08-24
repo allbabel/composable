@@ -52,8 +52,8 @@ Each step executed here is mapping teams to roles they play in the process.
 | role | groups of people| area |  
 |-----------------|-----|-----|
 | release engineers | `@ComposableFi/sre`| | 
-| integration stakeholders| not direct contributers | depend on runtime UI/Frontend/Bots/Explorer/Data integation |
-| council |   ***concil***(on chain list of keys with attahed ***identity***) | tokenomics, marketing |
+| integration stakeholders| not direct contributors | depend on runtime UI/Frontend/Bots/Explorer/Data integration |
+| council |   ***council***(on chain list of keys with attached ***identity***) | tokenomics, marketing |
 | technical| ***technicalCollective*** | speed up on chain changes | 
 
 #### Overview of core quality gates 
