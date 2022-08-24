@@ -139,7 +139,7 @@ Collected notes, preimage hash and alignment output is send to channel with coun
 
 ### Council collective
 
-- Coincil motion
+- Council motion
 - Creates default YES voting on democracy
 - Votes yes with their funds
 
