@@ -84,13 +84,13 @@ These can be `@ComposableFi/developers` or product owners, but can be anybody qu
 
 Release engineers confirm proper receipt of the proposed changes or request more information.
 
-### Alignment kick off
+### Alignment kick-off
 
-Release engineers produce `wasm` from commit of protected branch which contains all relevant commits considered for inclusion in Picasso upgrade.
+Release engineers produce `wasm` from the commit of the protected branch, which contains all relevant commits considered for inclusion in the Picasso upgrade.
 
-After some preliminary checks and aligment not specified here, Release engineers upgrade runtime on Dali Rococo Testnet using `sudo` key. 
+After some preliminary checks and alignment not specified here, Release engineers upgrade runtime on Dali Rococo Testnet using `sudo` key. 
 
-Release engineers share relevant release notes, `wasm` refence and how to access runs of new runtime to stakeholder via relevant channel.
+Release engineers share relevant release notes, `wasm` references, and how to access runs of new runtime to stakeholders via relevant channel.
 
 ### Align
 
