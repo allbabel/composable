@@ -61,16 +61,16 @@ Each step executed here is mapping teams to roles they play in the process.
 Minimal set of gates.
 
 All changes to runtime are forward compatible.
-Specifically, if extinsic was added, it is retained and new version are added with larger dispatch identifiers.
-If storage was added, it is migrated by relevant runtime code on upgrade to new version. Storage is not ugprade in place as there consumers which may not be able to read it after it is changed. Same relates to events.
+Specifically, if extrinsic was added, it is retained, and new versions are added with larger dispatch identifiers.
+If storage was added, it is migrated by relevant runtime code on upgrade to the new version. Storage is not upgraded in place as consumers may not be able to read it after it is changed. The same relates to events.
 
-Runtime was upraded on Dali Rococo Testnet and was producing blocks here at for several hours.
+Runtime was upgraded on Dali Rococo Testnet and produced blocks for several hours.
 
-Commit form which release is done passed full set of relevant check on protected main branch. 
+Commit form that confirms release is done, passed the full set of relevant checks on the protected main branch. 
 You cannot force push. 
-Each protocol on chain has ability to stop operating as of decision of its governance without dependency on runtime upgrade.
+Each protocol on the chain can stop operating as a decision of its governance without dependency on runtime upgrade.
 
-Resonable represenatives of stakeholders approved release to Piccaso.
+Reasonable representatives of stakeholders approved the release to Piccaso.
 
 All pallets included in Picasso runtime has sufficient amount of audit.
 
