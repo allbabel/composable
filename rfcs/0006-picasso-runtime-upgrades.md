@@ -35,17 +35,17 @@ The Document specifies relevant domains and stakeholders and teams, but doesn't 
 
 ### Overview of flow
 
-Relase notes collected, specifically `git commit`s which must be inlcuded into release are traceable to projects or pull request `item`s.
+Release notes collected, specifically `git commits` which must be included in the release, are traceable to projects or pull request `items`.
 
-Relevant notes and references to runtime build artifact (`wasm`) is shared into company channel with relevant representativses.
+Relevant notes and references to runtime build artifact (`wasm`) are shared in the company channel with relevant representatives.
 
-Represantatives agree with this release.
+Representatives agree with this release.
 
-Release is stored as ***preimage*** on Picasso. Preimage `hash` is shared in channel with ***counci*** representatives.
+The release is stored as ***preimage*** on Picasso. Preimage `hash` is shared in a channel with ***council*** representatives.
 
-Council creates default YES ***motion*** to vote on enactment of premiage on democracy. Shareholdes and ***technicalCollective*** fast track enactment of new runtime.
+Council creates default YES ***motion*** to vote on the enactment of preimage on democracy. Shareholders and ***technicalCollective*** fast track enactment of new runtime.
 
-Each step executed Here is mapping of teams to roles they play in process
+Each step executed here is mapping teams to roles they play in the process.
 
 #### Overview of actors
 
