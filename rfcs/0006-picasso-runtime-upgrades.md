@@ -2,7 +2,7 @@
 
 Proposes flow to do runtime upgrades of Picasso. 
 
-In its core [upgrades] are as described by Parity for developer network.
+In its core [upgrades]: https://docs.substrate.io/tutorials/get-started/forkless-upgrade are as described by Parity for the developer network.
 
 Extended with security measures, like Karura and Kusama have, to protect liqiudity on these networks.
 
