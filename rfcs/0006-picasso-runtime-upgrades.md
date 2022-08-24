@@ -94,21 +94,21 @@ Release engineers share relevant release notes, `wasm` refence and how to access
 
 ### Align
 
-Here stakeholders do their quality gates and vote aggree with release. 
-Amount of aggreent and exact teams to aggree depend on properties of upgrade. 
-Examples, complexity of upgrade, need to hot fix.
+Here stakeholders do their quality gates and vote agree with the release. 
+The amount of agreement necessary and the exact teams to agree depend on the properties of the upgrade. 
+Examples: complexity of upgrade, need to hot fix.
 
-On top of `core quality gates` next things can be considered:
+On top of `core quality gates` the following can be considered:
 
-`@ComposableFi/testers` runs full relevant set of integrations tests on Dali Rococo Testnet(Testnet for short).
+`@ComposableFi/testers` runs the full relevant set of integrations tests on Dali Rococo Testnet(Testnet for short).
 
-`@ComposableFi/technical-writers` ensure that available documentation is not in conflcit with Picasso  upgrade.
+`@ComposableFi/technical-writers` ensure that available documentation is not in conflict with the Picasso upgrade.
 
-`@ComposableFi/blockchain-integrations`, `@ComposableFi/bots` consider that user interface, historical data explorer and bot integrations will not negatively imact relevant integration and user experience.
+`@ComposableFi/blockchain-integrations`, `@ComposableFi/bots` consider that user interface, historical data explorer and bot integrations will not negatively impact relevant integration and user experience.
 
-`@ComposableFi/security` consider that runtime configuration(default values and included pallets) of Picasso is secure enough for relase. 
+`@ComposableFi/security` consider that Picasso's runtime configuration(default values and included pallets) is secure enough for release. 
 
-Amount and structure of alignemnt is not specified here, but some should be.
+Amount and alignment structure are not specified here, but some should be.
 
 
 ### On chain upgrade operations
